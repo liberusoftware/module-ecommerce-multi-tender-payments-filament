@@ -78,7 +78,10 @@ function entry(
         'position' => $position,
         'kind' => $kind,
         'effect' => $effect,
-        'amount_minor' => $effect === TenderEffect::Captured ? $amount : 0,
+        // A declined tender moved nothing, so it contributes nothing. A
+        // reversal carries the amount it undoes, which is what makes the fold's
+        // signed deltas cancel — see TenderEffect::balanceDelta().
+        'amount_minor' => $effect === TenderEffect::Declined ? 0 : $amount,
         'requested_minor' => $amount,
         'external_reference' => $externalReference,
         'occurred_at' => Carbon::now(),
