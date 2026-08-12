@@ -1,0 +1,27 @@
+{
+    "name": "ecommerce-multi-tender-payments-filament",
+    "description": "The operator surface for multi-tender payments. It reads plans, tenders and outstanding balances, and records reversals. It invents nothing.",
+    "version": "0.1.0",
+    "category": "presentation",
+    "provider": "Liberu\\Ecommerce\\MultiTenderPayments\\Filament\\MultiTenderPaymentsFilamentServiceProvider",
+    "features": [
+        "Read-only payment plan list and detail, with the outstanding balance computed by the domain fold",
+        "The append-only tender ledger presented as a relation manager with no edit and no delete",
+        "Recording a reversal against a captured tender, with the domain as the only authority on whether it is allowed",
+        "Every Filament ability enumerated by name and denied unless the host grants it",
+        "Gateway references hidden behind their own ability and never searchable or filterable",
+        "Fails closed when panel tenancy is enabled, because the domain publishes no tenant column"
+    ],
+    "presentation": {
+        "filament": {
+            "admin": [
+                "Liberu\\Ecommerce\\MultiTenderPayments\\Filament\\MultiTenderPaymentsPlugin"
+            ]
+        }
+    },
+    "requires": {
+        "packages": {
+            "liberusoftware/ecommerce-multi-tender-payments": "^0.1.0"
+        }
+    }
+}
